@@ -13,6 +13,7 @@ source ~/iTerm/powerlevel10k/powerlevel10k.zsh-theme
 export HISTCONTROL=ignoredups
 
 # Add ~/bin to PATH
+export PATH=/Users/ricardomendes/Library/Python/3.9/bin:$PATH
 export PATH=$PATH:~/bin
 
 # Some helpful aliases
@@ -29,6 +30,8 @@ alias free='top -l 1 -s 0 | grep PhysMem'
 alias ports='lsof -i -P -n | grep LISTEN'
 alias whoah="~/Library/Python/3.9/bin/gif-for-cli 18002878"
 alias ij="open -a /Applications/IntelliJ\ IDEA\ CE.app"
+# Swap key to enable '< >' key on mechanical keyboard
+alias swpk="~/Developer/Projects/shell/key-swap.sh"
 
 # Plugin
 # Zsh syntaxe highlighting
