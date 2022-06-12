@@ -37,7 +37,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeQuitOnOpen = 1
 map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Set number by default
 set number
@@ -47,7 +47,7 @@ inoremap jk <Esc>
 
 " ALE
 Plugin 'dense-analysis/ale'
-
+Plugin 'iamcco/markdown-preview.nvim'
 " Vundle---------------------------------------------------
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
