@@ -1,0 +1,34 @@
+[user]
+	name = Ricardo Mendes
+	email = mendes.r@gmx.com
+[core]
+	autocrlf = input
+	editor = vim
+	ignorecase = false
+[alias]
+	hist = log --all --graph --decorate --oneline
+	pulp = !git stash && git pull origin master && git stash pop
+	st = status
+	myln = "!git log --author="<1201779@isep.ipp.pt" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -"
+	co = checkout
+	br = branch
+	ci = commit
+	bra = branch -a  --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:blue)(%(committerdate:short)) [%(authorname)]' --sort=-committerdate
+	alias = config --get-regexp ^alias\\.
+	last = log -1 HEAD
+[diff]
+	tool = p4merge
+[difftool]
+	prompt = false
+[merge]
+	tool = p4merge
+[mergetool]
+	prompt = false
+[pull]
+	rebase = false
+[init]
+	templatedir = /Users/ricardomendes/.git-templates
+[difftool "p4merge"]
+	path = /Applications/p4merge.app/Contents/MacOS/p4merge
+[mergetool "p4merge"]
+	path = /Applications/p4merge.app/Contents/MacOS/p4merge
