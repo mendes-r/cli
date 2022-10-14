@@ -17,6 +17,7 @@ export PATH=/Users/ricardomendes/Library/Python/3.9/bin:$PATH
 export PATH=$PATH:~/bin
 
 # Some helpful aliases
+alias latexpack="cd /Library/TeX/Distributions/.DefaultTeX/Contents/AllTexmf/texmf/tex/latex"
 alias t="tree --du -h -L"
 alias k="kubectl"
 alias la="ls -alh"
@@ -24,13 +25,15 @@ alias ll="ls -l"
 alias l.="ls -d .*"
 alias dev="cd ~/Developer/Projects/"
 alias apps="cd; cd ../../Applications/"
-alias ricardo="cd; cd ./Documents/RicardoSync/"
+alias ric="cd; cd ./Documents/RicardoSync/"
+alias mestrado="cd; cd ./Documents/RicardoSync/1-temas/2-code/1-improvement/mestrado/"
 alias vi="vim"
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
 alias free='top -l 1 -s 0 | grep PhysMem'
 alias ports='lsof -i -P -n | grep LISTEN'
 alias ij="open -a /Applications/IntelliJ\ IDEA\ CE.app"
+alias mestrado="cd ~/Documents/RicardoSync/1-temas/2-code/1-improvement/mestrado"
 # Swap key to enable '< >' key on mechanical keyboard
 alias swpk="~/Developer/Projects/shell/key-swap.sh"
 
