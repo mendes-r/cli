@@ -98,15 +98,16 @@ alias vi="vim"
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-roor'
 alias ports='lsof -i -P -n | grep LISTEN | grep -v grep'
+alias qrnet='nmcli device wifi show-password'
+alias bat='batcat'
 
 # git branch
 git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
+# https://thucnc.medium.com/how-to-show-current-git-branch-with-colors-in-bash-prompt-380d05a24745
 export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(git_branch)\[\e[00m\]$ "
-#export PS1="[\u@\h \W]\$(git_branch)\$ "
-#export PS1="[\u@\h \W]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\$ "
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -131,5 +132,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-

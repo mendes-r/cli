@@ -14,6 +14,7 @@
 	cob = chcekout -b
 	br = branch
 	cm = commit -m
+	cma = commit --amend -m
 	bra = branch -a  --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:blue)(%(committerdate:short)) [%(authorname)]' --sort=-committerdate
 	alias = config --get-regexp ^alias\\.
 	last = log -1 HEAD
