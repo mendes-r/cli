@@ -62,6 +62,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " OTHER -----------------------------------
 
+:set tabstop=2
+:set shiftwidth=2
+:set expandtab
+
 " UTF-8
 set encoding=utf-8
 set fileencoding=utf-8
