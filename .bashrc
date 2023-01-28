@@ -100,6 +100,8 @@ alias chown='chown --preserve-roor'
 alias ports='lsof -i -P -n | grep LISTEN | grep -v grep'
 alias qrnet='nmcli device wifi show-password'
 alias bat='batcat'
+alias dodo='~/Developer/cli/todo.sh '
+alias proxychains='proxychains4'
 
 # git branch
 git_branch() {
