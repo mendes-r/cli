@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PKG="apt-get"
-PRG="vim git tmux neomutt tree screenfetch trace-cmd kernelshark btop bat pandoc nmap proxychains4 openvpn"
+PRG="vim git tmux neomutt tree screenfetch trace-cmd kernelshark btop bat pandoc nmap proxychains4 openvpn openssh-server"
 
 # install base programs
 
