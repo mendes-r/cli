@@ -23,5 +23,7 @@ check vimrc $DEST
 cp ~/.tmux.conf $DEST
 check tmux.config $DEST
 
+cp ~/.bashrc $DEST
+check bashrc $DEST
 
 

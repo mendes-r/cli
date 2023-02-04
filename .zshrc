@@ -34,6 +34,7 @@ alias free='top -l 1 -s 0 | grep PhysMem'
 alias ports='lsof -i -P -n | grep LISTEN'
 alias ij="open -a /Applications/IntelliJ\ IDEA\ CE.app"
 alias mestrado="cd ~/Documents/RicardoSync/1-temas/2-code/1-improvement/mestrado"
+alias tempo="curl wttr.in/oporto"
 # Swap key to enable '< >' key on mechanical keyboard
 alias swpk="~/Developer/Projects/shell/key-swap.sh"
 
