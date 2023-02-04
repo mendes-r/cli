@@ -8,29 +8,17 @@
 [alias]
 	hist = log --all --graph --decorate --oneline
 	a = add
+	aa = add .
 	s = status
 	co = checkout
 	cob = chcekout -b
 	br = branch
 	cm = commit -m
+	cma = commit --amend -m
 	bra = branch -a  --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:blue)(%(committerdate:short)) [%(authorname)]' --sort=-committerdate
 	alias = config --get-regexp ^alias\\.
 	last = log -1 HEAD
-[diff]
-	tool = p4merge
-[difftool]
-	prompt = false
-[merge]
-	tool = p4merge
-[mergetool]
-	prompt = false
 [pull]
 	rebase = false
-[init]
-	templatedir = /Users/ricardomendes/.git-templates
-[difftool "p4merge"]
-	path = /Applications/p4merge.app/Contents/MacOS/p4merge
-[mergetool "p4merge"]
-	path = /Applications/p4merge.app/Contents/MacOS/p4merge
 [help]
 	autocorrect = 1
