@@ -91,7 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias mestrado='cd /home/mendesr/Documents/Mestrado/22-23'
+alias mestrado='cd ~/Documents/Mestrado/22-23'
 alias dev='cd ~/Developer'
 alias fn='sudo ~/Developer/cli/toogle-hotkey.sh'
 alias vi="vim"
@@ -103,6 +103,8 @@ alias bat='batcat'
 alias dodo='~/Developer/cli/todo.sh '
 alias proxychains='proxychains4'
 alias tempo='curl wttr.in/'
+
+source ~/Developer/Projects/cli/dady
 
 # git branch
 git_branch() {

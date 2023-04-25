@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#
+# This script should not be run directly,
+# instead you need to source it from your .bashrc,
+#
+
+function dady() {
+  ARG=$1
+  ALL_PARENTS=$(echo $(pwd) | tr / " ")
+  DIR="/"
+
+  for word in $ALL_PARENTS; do
+    DIR=$DIR$word"/"	
+    if [ "$word" = "$ARG" ]; then 
+	echo $DIR
+	cd $DIR
+	return
+    fi
+  done
+}
+
