@@ -91,7 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias mestrado='cd /home/mendes/MEGAsync/1-improvement/mestrado/22-23'
+alias mestrado='cd /home/mendesr/Documents/Mestrado/22-23'
 alias dev='cd ~/Developer'
 alias fn='sudo ~/Developer/cli/toogle-hotkey.sh'
 alias vi="vim"
