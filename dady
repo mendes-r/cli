@@ -1,13 +1,14 @@
 #!/bin/bash
 
+# Script that jumps to a parent folder
 #
 # This script should not be run directly,
-# instead you need to source it from your .bashrc,
+# instead you need to add it in your .xxshrc file
 #
 
 function dady() {
   ARG=$1
-  ALL_PARENTS=$(echo $(pwd) | tr / " ")
+  ALL_PARENTS=($(echo $(pwd) | tr / " "))
   DIR="/"
 
   for word in $ALL_PARENTS; do
