@@ -1,22 +1,30 @@
 #!/bin/bash
 
+# Script that jumps to a parent folder
+# case agnostic and uses regex enabling using first letters of dir as an argument
 #
 # This script should not be run directly,
-# instead you need to source it from your .bashrc,
+# instead you need to add it in your .xxshrc file
 #
 
 function dady() {
-  ARG=$1
-  ALL_PARENTS=$(echo $(pwd) | tr / " ")
+
+  ARG=$(echo $1 | tr '[:upper:]' '[:lower:]')
+  ALL_PARENTS=($(echo $(pwd) | tr / " "))
   DIR="/"
 
   for word in $ALL_PARENTS; do
-    DIR=$DIR$word"/"	
-    if [ "$word" = "$ARG" ]; then 
-	echo $DIR
-	cd $DIR
-	return
+    DIR=$DIR$word"/"
+    word=$(echo $word | tr '[:upper:]' '[:lower:]')
+
+    if [[ "$word" = $ARG* ]]; then
+        echo $DIR
+        cd $DIR
+        return
     fi
   done
+
+  echo ":: dady directory not found ::"
+
 }
 
