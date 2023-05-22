@@ -2,9 +2,9 @@
 
 OS
 PKG
-BASE="tree curl wget openssh-server"
-SLIM="neovim python3-neovim nmap bat"
-FAT=""
+BASE="tree curl wget openssh-server bat gcc"
+SLIM="neovim python3-neovim nmap wireshark python3-pip"
+FAT="kernelshark trace-cmd"
 
 function get-os() {
 	OS=$(cat /etc/os-release | grep '^ID=*' | cut -d = -f 2 | tr a-z A-Z)  
