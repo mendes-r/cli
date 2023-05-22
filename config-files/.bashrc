@@ -85,26 +85,26 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
 alias l='ls -CF'
-alias mestrado='cd ~/Documents/Mestrado/22-23'
+alias la="ls -alh"
+alias l.="ls -d .*"
 alias dev='cd ~/Developer'
-alias fn='sudo ~/Developer/cli/toogle-hotkey.sh'
-alias vi="vim"
+alias vim="nvim"
+alias vi="nvim"
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-roor'
 alias ports='lsof -i -P -n | grep LISTEN | grep -v grep'
 alias qrnet='nmcli device wifi show-password'
-alias bat='batcat'
-alias dodo='~/Developer/cli/todo.sh '
 alias proxychains='proxychains4'
 alias tempo='curl wttr.in/'
+alias t="tree --du -h -L"
+alias k="kubectl"
 
-source ~/Developer/Projects/cli/dady
+source ~/Developer/cli/dady
 
 # git branch
 git_branch() {
@@ -137,3 +137,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+

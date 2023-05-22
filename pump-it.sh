@@ -2,7 +2,8 @@
 
 OS
 PKG
-SLIM=""
+BASE="tree curl wget openssh-server"
+SLIM="neovim python3-neovim nmap bat"
 FAT=""
 
 function get-os() {
@@ -37,6 +38,8 @@ function install() {
 }
 
 clear
+
+mkdir -p ~/Developer
 
 get-os
 echo "Let's personalize this $OS distro"

@@ -3,7 +3,7 @@
 	email = mendes.r@gmx.com
 [core]
 	autocrlf = input
-	editor = vim
+	editor = nvim
 	ignorecase = false
 [alias]
 	hist = log --all --graph --decorate --oneline
@@ -18,7 +18,7 @@
 	bra = branch -a  --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:blue)(%(committerdate:short)) [%(authorname)]' --sort=-committerdate
 	alias = config --get-regexp ^alias\\.
 	last = log -1 HEAD
-  change = diff-tree --ext-diff -p 
+	change = diff-tree --ext-diff -p 
 [pull]
 	rebase = false
 [help]
