@@ -104,7 +104,7 @@ alias tempo='curl wttr.in/'
 alias t="tree --du -h -L"
 alias k="kubectl"
 
-source ~/Developer/cli/dady
+source ~/Developer/cli/sub-script/dady
 
 # git branch
 git_branch() {
