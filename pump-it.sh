@@ -9,9 +9,52 @@ FAT="kernelshark trace-cmd"
 INSTALL=""
 #proxychain4 openvpn tmux latex 
 
+ANSWER=""
+
 # Ansi escape codes
-C_B_CYAN="\u001b[46;1m" 
+C_BG="\u001b[46;1m" 
 C_RESET="\u001b[0m"
+
+# Frame
+F_MARGIN=5
+
+function echo-line() {
+	# left margin
+	for (( i=0; i<$F_MARGIN; i++ ))
+	do
+		echo -n " "
+	done
+	
+	# print content
+	echo -en "$C_BG"
+	STRING_SIZE=$(echo $1 | wc -c)	
+	FILL_SIZE=$((COLUMNS-STRING_SIZE-F_MARGIN-F_MARGIN)) 
+	echo -en $1
+	for (( i=0; i<$FILL_SIZE; i++ ))
+	do
+		echo -n " "
+	done
+	echo -e "$C_RESET"
+}
+
+function read-line() {
+	# left margin
+	for (( i=0; i<$F_MARGIN; i++ ))
+	do
+		echo -n " "
+	done
+	
+	# print content
+	echo -en "$C_BG"
+	read -p "$1" -n1 ANSWER
+	STRING_SIZE=$(echo $1 | wc -c)	
+	FILL_SIZE=$((COLUMNS-STRING_SIZE-F_MARGIN-F_MARGIN-2)) 
+	for (( i=0; i<$FILL_SIZE; i++ ))
+	do
+		echo -n " "
+	done
+	echo -e "$C_RESET"
+}
 
 function get-os() {
 	OS=$(cat /etc/os-release | grep '^ID=*' | cut -d = -f 2 | tr a-z A-Z)  
@@ -48,18 +91,18 @@ function install() {
 function hello-diag() {
 	clear
 	echo ""
-	echo -e "\tLet's personalize your $C_B_CYAN$OS$C_RESET"
-	echo -e "\tWe will be using the $C_B_CYAN$PKG$C_RESET package manager"
-	echo ""
+	echo-line "Let's personalize your $OS"
+	echo-line "We will be using the $PKG package manager"
 }
 
 function install-mode-diag() {
+	echo-line ""	
 	while true; do
-		read -p $'\tSLIM or FAT installation? [Ss/Ff] ' -n 1 answer
-		case $answer in
-			[Ss]*) echo -e "\n\tSLIM installation"; INSTALL="$BASE $SLIM"; break;;
-			[Ff]*) echo -e "\n\tFAT installation"; INSTALL="$BASE $SLIM $FAT"; break;;	
-			[Qq]*) echo ""; exit 0;;
+		read-line "SLIM or FAT installation? [Ss/Ff] "
+		case $ANSWER in
+			[Ss]*) echo-line; echo-line "SLIM installation"; INSTALL="$BASE $SLIM"; break;;
+			[Ff]*) echo-line; echo-line "FAT installation"; INSTALL="$BASE $SLIM $FAT"; break;;	
+			[Qq]*) echo-line; echo-line ""; exit 0;;
 			*) echo "";;
 		esac
 	done
@@ -78,6 +121,7 @@ function update-pkg() {
 	spinout $!
 }
 
+
 trap "{ kill -9 $JOB; exit 255 }" SIGINT
 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
@@ -89,6 +133,7 @@ clear
 
 get-os
 get-pkg
+
 
 hello-diag
 #update-pkg
