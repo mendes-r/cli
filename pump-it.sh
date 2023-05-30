@@ -10,13 +10,16 @@ INSTALL=""
 #proxychain4 openvpn tmux latex 
 
 ANSWER=""
+M_SLIM="SLIM"
+M_FAT="FAT"
 
 # Ansi escape codes
-C_BG="\u001b[46;1m" 
+C_BG="\u001b[40;1m" 
 C_RESET="\u001b[0m"
 
 # Frame
 F_MARGIN=5
+F_PADDING=5
 
 function echo-line() {
 	# left margin
@@ -27,8 +30,12 @@ function echo-line() {
 	
 	# print content
 	echo -en "$C_BG"
+	for (( i=0; i<$F_PADDING; i++ ))
+	do
+		echo -n " "
+	done
 	STRING_SIZE=$(echo $1 | wc -c)	
-	FILL_SIZE=$((COLUMNS-STRING_SIZE-F_MARGIN-F_MARGIN)) 
+	FILL_SIZE=$((COLUMNS-STRING_SIZE-F_MARGIN-F_MARGIN-F_PADDING)) 
 	echo -en $1
 	for (( i=0; i<$FILL_SIZE; i++ ))
 	do
@@ -91,22 +98,52 @@ function install() {
 function hello-diag() {
 	clear
 	echo ""
+	echo-line ""
 	echo-line "Let's personalize your $OS"
 	echo-line "We will be using the $PKG package manager"
 }
 
-function install-mode-diag() {
-	echo-line ""	
+function flip-mode() {
+	if [[ "$M_SLIM" == "SLIM" ]]; then
+		M_SLIM="[SLIM]"
+		M_FAT="FAT"
+	else
+		M_SLIM="SLIM"
+		M_FAT="[FAT]"
+	fi
+}
+
+function mode() {
+	escape_char=$(printf "\u1b")
+	flip-mode
+		echo-line ""
+		echo-line "Select an installation mode... 'q' to quit."
+		echo-line ""
+		tput sc # save cursor positon
 	while true; do
-		read-line "SLIM or FAT installation? [Ss/Ff] "
-		case $ANSWER in
-			[Ss]*) echo-line; echo-line "SLIM installation"; INSTALL="$BASE $SLIM"; break;;
-			[Ff]*) echo-line; echo-line "FAT installation"; INSTALL="$BASE $SLIM $FAT"; break;;	
-			[Qq]*) echo-line; echo-line ""; exit 0;;
-			*) echo "";;
+		echo-line "$M_SLIM"
+		echo-line "$M_FAT"
+		echo-line ""
+		read -rsn1 mode # get 1 character
+		if [[ $mode == $escape_char ]]; then
+			read -rsn2 mode # read 2 more chars
+		fi
+		case $mode in
+    			'q') clear; exit 0;;
+	   	 	'[A') flip-mode;;
+    			'[B') flip-mode;;
+			'') break;;
+    			*) >&2;;
 		esac
+		tput rc # return to saved cursor position
+		tput ed # clear screen bellow cursor
 	done
-	echo ""
+
+	if [[ $M_SLIM == "[SLIM]" ]]; then
+		INSTALL="$BASE $SLIM"
+	else
+		INSTALL="$BASE $SLIM $FAT"
+	fi
 }
 
 function update-pkg() {
@@ -122,7 +159,7 @@ function update-pkg() {
 }
 
 
-trap "{ kill -9 $JOB; exit 255 }" SIGINT
+trap "{ kill -9 $JOB; exit 1 }" SIGINT
 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
     echo "Not running as root"
@@ -136,8 +173,12 @@ get-pkg
 
 
 hello-diag
+
+echo-line ""
+echo-line "//////////////////////////////////////////"
+
 #update-pkg
-install-mode-diag
+mode
 
 echo $INSTALL
 mkdir -p ~/Developer
