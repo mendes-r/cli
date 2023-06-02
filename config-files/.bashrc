@@ -99,7 +99,6 @@ alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-roor'
 alias ports='lsof -i -P -n | grep LISTEN | grep -v grep'
 alias qrnet='nmcli device wifi show-password'
-alias proxychains='proxychains4'
 alias tempo='curl wttr.in/'
 alias t="tree --du -h -L"
 alias k="kubectl"
