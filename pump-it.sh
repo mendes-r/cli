@@ -1,23 +1,31 @@
 #!/bin/bash
 
+# Initial values
 OS="FEDORA"
 PKG="dnf"
+
 JOB=""
 BASE="tree curl wget openssh-server bat gcc btop tor tmux"
 SLIM="neovim python3-neovim nmap wireshark proxychains-ng"
 FAT="kernelshark trace-cmd openvpn python3-pip texmaker"
-INSTALL=""
 
-ANSWER=""
+# Modes index 1=BASE, 2=SLIM, 3=FAT
+INSTALL=""
 M_INDEX=1
+ELAPSE_TIME=""
 
 # Ansi escape codes
-C_BG="\u001b[40;1m" 
+C_BG="\u001b[40;1m" # dark-gray
 C_RESET="\u001b[0m"
 
 # Frame
 F_MARGIN=5
 F_PADDING=5
+
+SEP="//////////////////////////////////////////"
+
+# Error log file
+LOG="install-errors.log"
 
 function echo-line() {
 	# left margin
@@ -42,25 +50,6 @@ function echo-line() {
 	echo -e "$C_RESET"
 }
 
-function read-line() {
-	# left margin
-	for (( i=0; i<$F_MARGIN; i++ ))
-	do
-		echo -n " "
-	done
-	
-	# print content
-	if [[ $2 != n ]]; then echo -en "$C_BG"; fi
-	read -p "$1" -n1 ANSWER
-	STRING_SIZE=$(echo $1 | wc -c)	
-	FILL_SIZE=$((COLUMNS-STRING_SIZE-F_MARGIN-F_MARGIN-2)) 
-	for (( i=0; i<$FILL_SIZE; i++ ))
-	do
-		echo -n " "
-	done
-	echo -e "$C_RESET"
-}
-
 function get-os() {
 	OS=$(cat /etc/os-release | grep '^ID=*' | cut -d = -f 2 | tr a-z A-Z)  
 }
@@ -74,24 +63,63 @@ function get-pkg() {
 }
 
 function spinout() {
+	start=$(date +%s)
 	JOB=$1
 	i=1
 	sp="/-\|"
+	tput sc # save cursor positon
 	while [ -d /proc/$JOB ]; do
 		printf "\b${sp:i++%${#sp}:1}"
 		sleep 0.2
 	done
+	tput rc # return to saved cursor position
+	tput ed # clear screen bellow cursor
+	end=$(date +%s)
 	JOB=""
+	ELAPSE_TIME=$(($end-$start))
+}
+
+function update-pkg() {
 	echo ""
+
+	echo-line "Updating package manager" n
+	$PKG update -y >/dev/null 2>> $LOG & PID=$!
+	spinout $PID
+	wait $PID
+	check $?
+
+	echo ""
+
+	echo-line "Upgrading ... " n
+	$PKG upgrade -y >/dev/null 2>> $LOG & PID=$!
+	spinout $PID
+	wait $PID
+	check $?
 }
 
 function install() {
 	echo ""
+	echo "" > $LOG 
 	for program in $INSTALL; do
 		echo-line "Start $program instalation ..." n
-		$PKG $program -y >/dev/null 2>&1 & disown
-		spinout $!
+		$PKG install $program -y >/dev/null 2>> $LOG & PID=$!
+		tput sc # save cursor positon
+		spinout $PID &
+		wait $PID
+		tput rc # return to saved cursor position
+		tput ed # clear screen bellow cursor
+		check $?
+		echo ""
 	done
+}
+
+function check() {
+	if [ $1 -eq 0 ]; then 
+		echo-line "\U0001f618 successful" n; 
+	else 
+		echo-line "\U0001f92c failed" n; 
+	fi
+	echo-line "$ELAPSE_TIME seconds" n
 }
 
 function hello-diag() {
@@ -141,7 +169,7 @@ function index-minus() {
 	fi
 }
 
-function mode() {
+function select-mode() {
 	escape_char=$(printf "\u1b")
 	echo-line ""
 	echo-line "Select an installation mode... 'q' to quit."
@@ -170,29 +198,12 @@ function mode() {
 		tput rc # return to saved cursor position
 		tput ed # clear screen bellow cursor
 	done
-
-
-}
-
-function update-pkg() {
-	echo ""
-	echo-line "Updating package manager" n
-	echo-line "Waiting ... " n
-	sleep 1 
-	$PKG update -y >/dev/null 2>&1 & disown
-	spinout $!
-	echo ""
-	echo-line "Upgrading ... " n
-	$PKG upgrade -y >/dev/null 2>&1 & disown
-	spinout $!
 }
 
 function cleanup() {
-	kill $JOB
-	tput cnorm;
-	clear	
+	kill -9 $JOB > /dev/null 2>&1
+	exit
 }
-
 
 trap cleanup EXIT 
 
@@ -206,28 +217,25 @@ clear
 tput civis
 get-os
 get-pkg
+
 hello-diag
+
 echo-line ""
-echo-line "//////////////////////////////////////////"
-mode
+echo-line "$SEP"
+select-mode
 mkdir -p ~/Developer
 
 echo-line ""
-echo-line "//////////////////////////////////////////"
+echo-line "$SEP"
 echo-line "Update Package Manager"
 echo-line ""
 update-pkg
 
+echo ""
+
 echo-line ""
-echo-line "//////////////////////////////////////////"
+echo-line "$SEP"
 echo-line "Start Installation"
 echo-line ""
 install
-
-sleep 5 &
-spinout $!
-
-tput cnorm
-clear
-
 
