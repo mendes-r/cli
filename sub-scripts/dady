@@ -10,7 +10,7 @@
 function dady() {
 
   ARG=$(echo $1 | tr '[:upper:]' '[:lower:]')
-  ALL_PARENTS=($(echo $(pwd) | tr / " "))
+  ALL_PARENTS=$(echo $(dirname $0) && pwd | tr / " ")
   DIR="/"
 
   for word in $ALL_PARENTS; do
