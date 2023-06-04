@@ -105,6 +105,7 @@ alias t="tree --du -h -L"
 alias k="kubectl"
 
 source ~/Developer/cli/sub-scripts/dady
+source ~/Developer/cli/sub-scripts/toogle-hotkey
 
 # git branch
 git_branch() {

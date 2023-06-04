@@ -1,6 +1,8 @@
 #!/bin/bash
 
-TOOGLE=$1
+function fn() {
+
+	TOOGLE=$1
 
 case $1 in
 
@@ -18,4 +20,5 @@ case $1 in
     ;;
 esac
 
-echo $TOOGLE > /sys/devices/pci0000\:00/0000\:00\:14.3/PNP0C09\:00/VPC2004\:00/fn_lock
+sudo echo $TOOGLE > /sys/devices/pci0000\:00/0000\:00\:14.3/PNP0C09\:00/VPC2004\:00/fn_lock
+}
