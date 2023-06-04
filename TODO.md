@@ -1,3 +1,2 @@
-- Confirm that the installation was successfull
-- Have a log file for the installation
 - Add configuration files to the computer
+- Proxy interceptor Burpsuit
