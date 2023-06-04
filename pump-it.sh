@@ -4,8 +4,10 @@
 OS="FEDORA"
 PKG="dnf"
 
+HOME_DIR=$(getent passwd $SUDO_USER | cut -d: -f6)
+
 JOB=""
-BASE="tree curl wget openssh-server bat gcc btop tor tmux"
+BASE="tree git curl wget openssh-server bat gcc btop tor tmux"
 SLIM="neovim python3-neovim nmap wireshark proxychains-ng"
 FAT="kernelshark trace-cmd openvpn python3-pip texmaker"
 
@@ -26,6 +28,33 @@ SEP="//////////////////////////////////////////"
 
 # Error log file
 LOG="install-errors.log"
+
+function conf-files() {
+	case $1 in
+		proxychains-ng) 
+			echo-line "Adding config files for $1 to $HOME_DIR..." n
+			sudo cp ./config-files/proxychains4.conf /etc/proxychains.conf
+			check $?
+			;;
+		openssh-server)
+			echo-line "Adding config files for $1 to $HOME_DIR..." n
+			cp ./config-files/sshd_config /etc/ssh/sshd_config
+			check $?
+			;;
+		git)
+			echo-line "Adding config files for $1 to $HOME_DIR..." n
+			cp ./config-files/.gitconfig $HOME_DIR/.gitconfig
+			check $?
+			;;
+		tmux)
+			echo-line "Adding config files for $1 to $HOME_DIR..." n
+			cp ./config-files/.tmux.conf $HOME_DIR/.tmux.conf
+			check $?
+			;;
+		*)return 0;;
+
+	esac
+}
 
 function echo-line() {
 	# left margin
@@ -82,7 +111,7 @@ function spinout() {
 function update-pkg() {
 	echo ""
 
-	echo-line "Updating package manager" n
+	echo-line "Updating package manager..." n
 	$PKG update -y >/dev/null 2>> $LOG & PID=$!
 	spinout $PID
 	wait $PID
@@ -90,7 +119,7 @@ function update-pkg() {
 
 	echo ""
 
-	echo-line "Upgrading ... " n
+	echo-line "Upgrading... " n
 	$PKG upgrade -y >/dev/null 2>> $LOG & PID=$!
 	spinout $PID
 	wait $PID
@@ -101,7 +130,7 @@ function install() {
 	echo ""
 	echo "" > $LOG 
 	for program in $INSTALL; do
-		echo-line "Start $program instalation ..." n
+		echo-line "Start $program instalation..." n
 		$PKG install $program -y >/dev/null 2>> $LOG & PID=$!
 		tput sc # save cursor positon
 		spinout $PID &
@@ -109,17 +138,19 @@ function install() {
 		tput rc # return to saved cursor position
 		tput ed # clear screen bellow cursor
 		check $?
+		conf-files $program
 		echo ""
 	done
 }
 
 function check() {
-	if [ $1 -eq 0 ]; then 
+	if [[ $1 -eq 0 ]]; then 
 		echo-line "\U0001f618 successful" n; 
 	else 
 		echo-line "\U0001f92c failed" n; 
 	fi
-	echo-line "$ELAPSE_TIME seconds" n
+	echo-line "- exit code: $1" n
+	echo-line "- elapsed time: ${ELAPSE_TIME}s" n
 }
 
 function hello-diag() {
@@ -214,7 +245,6 @@ fi
 
 clear
 
-tput civis
 get-os
 get-pkg
 
@@ -224,6 +254,13 @@ echo-line ""
 echo-line "$SEP"
 select-mode
 mkdir -p ~/Developer
+
+echo-line "Adding config file for bash to $HOME_DIR..."
+cp ./config-files/.bashrc $HOME_DIR/.bashrc
+check $?
+source $HOME_DIR/.bashrc
+
+echo ""
 
 echo-line ""
 echo-line "$SEP"
@@ -239,3 +276,4 @@ echo-line "Start Installation"
 echo-line ""
 install
 
+echo-line "RESTART the computer!"
