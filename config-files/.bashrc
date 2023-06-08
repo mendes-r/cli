@@ -104,6 +104,7 @@ alias tempo='curl wttr.in/'
 alias t="tree --du -h -L"
 alias k="kubectl"
 alias fn="sudo bash ~/Developer/cli/sub-scripts/toogle-hotkey"
+alias sysinfo="bash ~/Developer/cli/sub-scripts/sys-info"
 
 source ~/Developer/cli/sub-scripts/dady
 
