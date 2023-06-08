@@ -1,24 +1,22 @@
 #!/bin/bash
+# Lenovo 100w gen3 
+#
+# Enable and disable fn lock mode
 
-function fn() {
-
-	TOOGLE=$1
+TOOGLE=$1
 
 case $1 in
-
-  0)
-    echo "Disabling Hotkeys"
-    ;;
-
-  1)
-    echo "Enabling Hotkeys"
-    ;;
-
-  *)
-	  echo "Wrong argument. Only 0 (disable) or 1 (enable) are permited."
-	  exit 1
-    ;;
+  0) echo "Disabling Hotkeys";;
+  1) echo "Enabling Hotkeys";;
+  *) echo "Wrong argument. Only 0 (disable) or 1 (enable) are permitted."; exit 1;;
 esac
 
-sudo echo $TOOGLE > /sys/devices/pci0000\:00/0000\:00\:14.3/PNP0C09\:00/VPC2004\:00/fn_lock
-}
+echo $TOOGLE > /sys/devices/pci0000\:00/0000\:00\:14.3/PNP0C09\:00/VPC2004\:00/fn_lock
+
+exit_code=$?
+
+if [[ $exit_code != 0 ]]
+then
+	echo $exit_code
+	echo "Something went wrong."
+fi

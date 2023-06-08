@@ -103,9 +103,9 @@ alias qrnet='nmcli device wifi show-password'
 alias tempo='curl wttr.in/'
 alias t="tree --du -h -L"
 alias k="kubectl"
+alias fn="sudo bash ~/Developer/cli/sub-scripts/toogle-hotkey"
 
 source ~/Developer/cli/sub-scripts/dady
-source ~/Developer/cli/sub-scripts/toogle-hotkey
 
 # git branch
 git_branch() {
