@@ -51,6 +51,17 @@ function conf-files() {
 			cp ./config-files/.tmux.conf $HOME_DIR/.tmux.conf
 			check $?
 			;;
+    neovim)
+			echo-line "Adding config files for $1 to $HOME_DIR..." n
+      if [[ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]]
+      then
+        echo-line "Installing vim-plug" n
+        curl -fLos "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > /dev/null
+      fi
+      mkdir -p $HOME_DIR/.config/nvim
+			cp ./config-files/init.vim $HOME_DIR/.config/nvim/
+			check $?
+			;;
 		*)return 0;;
 
 	esac
