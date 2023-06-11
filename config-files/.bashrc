@@ -105,6 +105,7 @@ alias t="tree --du -h -L"
 alias k="kubectl"
 alias fn="sudo bash ~/Developer/cli/sub-scripts/toogle-hotkey"
 alias sysinfo="bash ~/Developer/cli/sub-scripts/sys-info"
+alias gpt="tgpt"
 
 source ~/Developer/cli/sub-scripts/dady
 
@@ -139,4 +140,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
