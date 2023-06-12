@@ -1,4 +1,6 @@
-- Install harpoon for nvim
 - https://github.com/dwisiswant0/awesome-oneliner-bugbounty
 - https://github.com/KathanP19/HowToHunt
 - https://github.com/aandrew-me/tgpt 'with proxychain' 
+- https://github.com/sysadmin-navyug/elantech-touchpad
+- Make an harpoon typo command for bash
+- https://github.com/dylanaraps/writing-a-tui-in-bash/blob/master/README.md

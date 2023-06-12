@@ -140,3 +140,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# bait script env variables
+export BAIT_NET_CONTENT
+export BAIT_NET_SIZE
