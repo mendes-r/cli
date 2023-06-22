@@ -90,4 +90,4 @@ bait() {
   esac
 }
 
-bait $1
+# bait $1
