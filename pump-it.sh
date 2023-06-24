@@ -266,8 +266,9 @@ echo-line "$SEP"
 select-mode
 mkdir -p ~/Developer
 
-echo-line "Adding config file for bash to $HOME_DIR..."
+echo-line "Adding bashrc to $HOME_DIR and scripts to local bin/..."
 cp ./config-files/.bashrc $HOME_DIR/.bashrc
+cp ./sub-scripts/bait /usr/local/bin/
 check $?
 source $HOME_DIR/.bashrc
 

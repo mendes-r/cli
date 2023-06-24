@@ -29,13 +29,13 @@ catch() {
     fi
   done
   
-  BAIT_NET_CONTENT="$BAIT_NET_CONTENT${fish} "
-  BAIT_NET_SIZE=$((BAIT_NET_SIZE+1))
+  export  BAIT_NET_CONTENT="$BAIT_NET_CONTENT${fish} "
+  export  BAIT_NET_SIZE=$((BAIT_NET_SIZE+1))
 }
 
 release() {
-  BAIT_NET_CONTENT=""
-  BAIT_NET_SIZE=0
+  export BAIT_NET_CONTENT=""
+  export BAIT_NET_SIZE=0
 }
 
 grab() {
@@ -77,11 +77,11 @@ grab() {
     tput rc # return to saved cursor positon
     tput ed # clear below cursor 
   
-    cd $jump
   done
+  cd $jump
 }
 
-bait() {
+_bait() {
   case $1 in
     catch|'') echo "Catch $(pwd)"; catch ;;
     release|-r) release ;;
@@ -90,4 +90,4 @@ bait() {
   esac
 }
 
-# bait $1
+_bait $1
