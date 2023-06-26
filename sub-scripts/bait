@@ -45,9 +45,11 @@ grab() {
   
   if [[ $BAIT_NET_SIZE -eq 0 ]]; then echo "No Catchings"; return; fi
 
-  tput sc # save cursor position
-  
+
   while true; do
+    tput sc # save cursor position
+    tput civis # invisible cursor
+    
     pointer=0
 
     for dir in $BAIT_NET_CONTENT; do
@@ -76,9 +78,11 @@ grab() {
     
     tput rc # return to saved cursor positon
     tput ed # clear below cursor 
-  
   done
+
   cd $jump
+  
+  tput cnorm # cursor normal
 }
 
 _bait() {
