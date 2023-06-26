@@ -11,7 +11,7 @@
 	aa = add .
 	s = status
 	co = checkout
-	cob = chcekout -b
+	cob = checkout -b
 	br = branch
 	cm = commit -m
 	cma = commit --amend -m
