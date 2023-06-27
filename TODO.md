@@ -6,3 +6,5 @@
 - Make GRUB initialize from start
 - make the BAIT env has global envs
 - https://linuxcommand.org/lc3_adv_tput.php
+- bait esc to escape
+

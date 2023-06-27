@@ -82,6 +82,8 @@ grab() {
 
   cd $jump
   
+  tput rc # return to saved cursor positon
+  tput ed # clear below cursor 
   tput cnorm # cursor normal
 }
 

@@ -142,6 +142,3 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# bait script env variables
-export BAIT_NET_CONTENT
-export BAIT_NET_SIZE
