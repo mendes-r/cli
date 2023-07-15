@@ -7,4 +7,5 @@
 - make the BAIT env has global envs
 - https://linuxcommand.org/lc3_adv_tput.php
 - bait esc to escape
+- apt-get install build-essential
 
