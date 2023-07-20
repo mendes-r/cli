@@ -15,7 +15,7 @@ help-page() {
   echo -e "\thelp | -h"
   echo -e "\tcatch|<empty>"
   echo -e "\trelease | -r"
-  echo -e "\tgrab | -g"
+  echo -e "\tgrab | -g ... press 'q' to exit"
   echo ""
 }
 
@@ -72,6 +72,7 @@ grab() {
     case $mode in
       "[A") if [[ $index != 0 ]]; then index=$((index - 1)); else index=$((BAIT_NET_SIZE - 1)); fi ;;
       "[B") if [[ $index != $((BAIT_NET_SIZE - 1)) ]]; then index=$((index + 1)); else index=0; fi ;;
+      "q") exit ;;
       "") break ;;
       *) >&2 ;;
     esac

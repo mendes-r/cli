@@ -87,7 +87,6 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
 alias cp='cp -i'
 alias ll='ls -alF'
 alias l='ls -CF'
@@ -100,13 +99,13 @@ alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-roor'
 alias ports='lsof -i -P -n | grep LISTEN | grep -v grep'
 alias qrnet='nmcli device wifi show-password'
-alias tempo='curl wttr.in/'
 alias t="tree --du -h -L"
 alias k="kubectl"
 alias fn="sudo bash ~/Developer/cli/sub-scripts/toogle-hotkey"
 alias sysinfo="bash ~/Developer/cli/sub-scripts/sys-info"
 alias gpt="tgpt"
 alias bait="source bait"
+alias open="xdg-open"
 
 source ~/Developer/cli/sub-scripts/dady
 

@@ -7,8 +7,8 @@ PKG="dnf"
 HOME_DIR=$(getent passwd $SUDO_USER | cut -d: -f6)
 
 JOB=""
-BASE="tree git curl wget openssh-server bat gcc btop tor tmux"
-SLIM="neovim python3-neovim nmap wireshark proxychains-ng"
+BASE="tree git curl wget openssh-server bat gcc btop tor tmux srm"
+SLIM="neovim python3-neovim nmap wireshark proxychains-ng kernel-devel"
 FAT="kernelshark trace-cmd openvpn python3-pip python-venv texmaker"
 
 # Modes index 1=BASE, 2=SLIM, 3=FAT
