@@ -7,7 +7,7 @@ PKG="dnf"
 HOME_DIR=$(getent passwd $SUDO_USER | cut -d: -f6)
 
 JOB=""
-BASE="tree git curl wget openssh-server bat gcc btop tor tmux srm"
+BASE="tree git curl wget openssh-server bat gcc btop tor tmux srm meld"
 SLIM="neovim python3-neovim nmap wireshark proxychains-ng kernel-devel"
 FAT="kernelshark trace-cmd openvpn python3-pip python-venv texmaker"
 
@@ -266,9 +266,8 @@ echo-line "$SEP"
 select-mode
 mkdir -p ~/Developer
 
-echo-line "Adding bashrc to $HOME_DIR and scripts to local bin/..."
+echo-line "Adding bashrc to $HOME_DIR ..."
 cp ./config-files/.bashrc $HOME_DIR/.bashrc
-cp ./sub-scripts/bait /usr/local/bin/
 check $?
 source $HOME_DIR/.bashrc
 
