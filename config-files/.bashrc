@@ -106,7 +106,6 @@ alias k="kubectl"
 alias fn="sudo bash ~/Developer/cli/sub-scripts/toogle-hotkey"
 alias sysinfo="bash ~/Developer/cli/sub-scripts/sys-info"
 alias gpt="tgpt"
-alias bait="source bait"
 
 source ~/Developer/cli/sub-scripts/dady
 
