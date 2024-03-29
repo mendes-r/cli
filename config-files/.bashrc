@@ -99,15 +99,8 @@ alias vi="nvim"
 alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-roor'
 alias ports='lsof -i -P -n | grep LISTEN | grep -v grep'
-alias qrnet='nmcli device wifi show-password'
-alias tempo='curl wttr.in/'
 alias t="tree --du -h -L"
 alias k="kubectl"
-alias fn="sudo bash ~/Developer/cli/sub-scripts/toogle-hotkey"
-alias sysinfo="bash ~/Developer/cli/sub-scripts/sys-info"
-alias gpt="tgpt"
-
-source ~/Developer/cli/sub-scripts/dady
 
 # git branch
 git_branch() {

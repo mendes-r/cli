@@ -9,8 +9,14 @@
 - bait esc to escape
 - apt-get install build-essential
 
+- improve dady
+
+- mkdir Developer folder
+
 - list of programs to install should be put on a csv file
 - list of config and the directories should be put on a file
 - both files should then be read by the script
 
-- !!! Does not work on Mint !!!
+----
+tmux
+nvim plugin
