@@ -54,10 +54,11 @@ $PKG install tmux -y
 msg "${GREEN}tmux installed.${NOFORMAT}"
 
 msg "Adding config files..."
-cp ./.tmux.conf /home/$HOME_USER/.tmux.conf
+CONF_PATH=/home/$HOME_USER/.tmux.conf
+cp ./.tmux.conf $CONF_PATH
 
-if ! [ -f /home/$HOME_USER/.tmux.conf ]; then
-  die "${RED}ERROR File does not exist.${NOFORMAT}"
+if ! [ -f $CONF_PATH ]; then
+  die "${RED}ERROR Config file was not correctly added.${NOFORMAT}"
 fi
 
 msg "${GREEN}Config files added.${NOFORMAT}"
