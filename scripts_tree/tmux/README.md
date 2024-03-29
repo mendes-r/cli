@@ -3,5 +3,5 @@
 ## How to
 
 ```sh
-$ sudo bash tmux_script <package manager> $USER
+$ sudo bash xxx_script <package manager> $USER
 ```
