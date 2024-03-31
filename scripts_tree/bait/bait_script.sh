@@ -48,11 +48,7 @@ HOME_USER=$1
 
 # script logic here
 
-msg "Installing dady..."
-cp ./dady /usr/local/bin/
-msg "${GREEN}dady installed.${NOFORMAT}"
-
-msg "Adding configurations..."
-echo "source /usr/local/bin/dady" >> /home/$HOME_USER/.bashrc
-msg "${GREEN}Configurations added.${NOFORMAT}"
+msg "Installing bait..."
+cp ./bait /usr/local/bin/
+msg "${GREEN}bait installed.${NOFORMAT}"
 
