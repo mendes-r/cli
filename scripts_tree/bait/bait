@@ -29,11 +29,8 @@ catch() {
     fi
   done
   
-  export BAIT_NET_CONTENT="$BAIT_NET_CONTENT${fish}"
+  export BAIT_NET_CONTENT="$BAIT_NET_CONTENT ${fish}"
   export BAIT_NET_SIZE=$((BAIT_NET_SIZE+1))
-
-  echo $BAIT_NET_CONTENT
-  echo $BAIT_NET_SIZE
 }
 
 release() {

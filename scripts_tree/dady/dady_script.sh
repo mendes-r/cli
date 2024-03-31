@@ -53,6 +53,14 @@ cp ./dady /usr/local/bin/
 msg "${GREEN}dady installed.${NOFORMAT}"
 
 msg "Adding configurations..."
-echo "source /usr/local/bin/dady" >> /home/$HOME_USER/.bashrc
+
+CONF_INPUT="source /usr/local/bin/dady"
+CONF_DESTINATION="/home/${HOME_USER}/.bashrc"
+
+if [ $(grep -c "$CONF_INPUT" "$CONF_DESTINATION") -eq 0 ]
+then
+  echo $CONF_INPUT >> $CONF_DESTINATION
+fi
+
 msg "${GREEN}Configurations added.${NOFORMAT}"
 
