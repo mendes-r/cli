@@ -44,7 +44,7 @@ parse_params() {
 setup_colors
 parse_params "$@"
 
-PROGRAMS="tree curl wget bat btop meld nmap meld"
+PROGRAMS="git tree curl wget bat btop meld nmap meld"
 PKG=$1
 HOME_USER=$2
 
@@ -55,4 +55,13 @@ for program in $PROGRAMS; do
   $PKG install $program -y
   msg "${GREEN}$program installed.${NOFORMAT}"
 done
+
+msg "Adding config files..."
+CONF_PATH=/home/$HOME_USER/
+
+if ! [ -f $CONF_PATH/.gitconfig ]; then
+  cp ./.gitconfig $CONF_PATH
+fi
+
+msg "${GREEN}Config files added.${NOFORMAT}"
 

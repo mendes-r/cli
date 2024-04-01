@@ -56,10 +56,9 @@ msg "${GREEN}neovim installed.${NOFORMAT}"
 msg "Adding config files..."
 CONF_PATH=/home/$HOME_USER/.config/nvim
 mkdir -p $CONF_PATH
-cp ./init.vim $CONF_PATH
 
 if ! [ -f $CONF_PATH/init.vim ]; then
-  die "${RED}ERROR Config file was not correctly added.${NOFORMAT}"
+  cp ./init.vim $CONF_PATH
 fi
 
 msg "${GREEN}Config files added.${NOFORMAT}"
