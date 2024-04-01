@@ -7,7 +7,7 @@ PKG="dnf"
 HOME_DIR=$(getent passwd $SUDO_USER | cut -d: -f6)
 
 JOB=""
-BASE="openssh-server gcc tor "
+BASE="gcc tor "
 SLIM="python3-neovim wireshark proxychains-ng"
 FAT="kernelshark trace-cmd openvpn python3-pip python-venv texmaker xxd"
 
