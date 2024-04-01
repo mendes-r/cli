@@ -49,20 +49,22 @@ HOME_USER=$1
 # script logic here
 
 msg "Installing bait..."
-cp ./bait /usr/local/bin/
+git clone https://github.com/mendes-r/bait.git /tmp/bait/
+cd /tmp/bait/src/
+make install
+rm -rf /tmp/bait/
 msg "${GREEN}bait installed.${NOFORMAT}"
 
 msg "Adding configurations..."
 
-CONF_INPUT_1="export BAIT_NET_CONTENT=''"
-CONF_INPUT_2="export BAIT_NET_SIZE=''"
+CONF_INPUT="eval \$(bait-tool \$1 3>&1 1>&2 2>&3) 2> /dev/null"
 CONF_DESTINATION="/home/${HOME_USER}/.bashrc"
 
-if [ $(grep -c "$CONF_INPUT_1" "$CONF_DESTINATION") -eq 0 ] && [ $(grep -c "$CONF_INPUT_2" "$CONF_DESTINATION") -eq 0 ] 
+if [ $(grep -c "$CONF_INPUT" "$CONF_DESTINATION") -eq 0 ]
 then
-  echo $CONF_INPUT_1 >> $CONF_DESTINATION
-  echo $CONF_INPUT_2 >> $CONF_DESTINATION
-  echo "alias bait='. bait'" >> $CONF_DESTINATION
+  echo "bait() {" >> $CONF_DESTINATION
+  echo $CONF_INPUT >> $CONF_DESTINATION
+  echo "}" >> $CONF_DESTINATION
 fi
 
 msg "${GREEN}Configurations added.${NOFORMAT}"
