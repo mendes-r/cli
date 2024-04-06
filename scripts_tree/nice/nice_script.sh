@@ -44,7 +44,7 @@ parse_params() {
 setup_colors
 parse_params "$@"
 
-PROGRAMS="git tree curl wget nmap openssh-server"
+PROGRAMS="bat btop meld"
 PKG=$1
 HOME_USER=$2
 
@@ -55,14 +55,4 @@ for program in $PROGRAMS; do
   $PKG install $program -y
   msg "${GREEN}$program installed.${NOFORMAT}"
 done
-
-msg "Adding config files..."
-
-CONF_PATH=/home/$HOME_USER/
-cp ./.gitconfig $CONF_PATH
-
-CONF_PATH=/etc/ssh/
-cp ./sshd_config $CONF_PATH
-
-msg "${GREEN}Config files added.${NOFORMAT}"
 

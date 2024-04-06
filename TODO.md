@@ -21,8 +21,5 @@
 little snitch
 stacer ??
 ddgr
-chat GPT cli
 protonvpn service
-
-put btop, bat and other to a nice-to-have script
 
