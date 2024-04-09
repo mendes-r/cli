@@ -44,7 +44,7 @@ parse_params() {
 setup_colors
 parse_params "$@"
 
-PROGRAMS="bat btop meld textmaker ncdu"
+PROGRAMS="proxychains-ng"
 PKG=$1
 HOME_USER=$2
 
@@ -55,4 +55,11 @@ for program in $PROGRAMS; do
   $PKG install $program -y
   msg "${GREEN}$program installed.${NOFORMAT}"
 done
+
+msg "Adding config files..."
+
+CONF_PATH=/etc/
+cp ./proxychains4.conf $CONF_PATH
+
+msg "${GREEN}Config files added.${NOFORMAT}"
 
