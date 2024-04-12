@@ -60,6 +60,7 @@ msg "Adding config files..."
 
 CONF_PATH=/home/$HOME_USER/
 cp ./.gitconfig $CONF_PATH
+cp ./.bashrc $CONF_PATH
 
 CONF_PATH=/etc/ssh/
 cp ./sshd_config $CONF_PATH
