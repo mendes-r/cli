@@ -36,7 +36,7 @@ parse_params() {
   args=("$@")
 
   # check required params and arguments
-  [[ ${#args[@]} -lt 2 ]] && die "Missing script argument: package manager, e.g. 'dnf' and user name."
+  [[ ${#args[@]} -lt 1 ]] && die "Missing script argument: package manager, e.g. 'dnf'."
 	
   return 0
 }
@@ -44,9 +44,8 @@ parse_params() {
 setup_colors
 parse_params "$@"
 
-PROGRAMS="tor proxychains-ng"
+PROGRAMS="wireshark kernelshark trace-cmd xxd"
 PKG=$1
-HOME_USER=$2
 
 # script logic here
 
@@ -55,13 +54,4 @@ for program in $PROGRAMS; do
   $PKG install $program -y
   msg "${GREEN}$program installed.${NOFORMAT}"
 done
-
-msg "Adding config files..."
-
-CONF_PATH=/etc/
-cp ./proxychains4.conf $CONF_PATH
-
-service tor restart
-
-msg "${GREEN}Config files added.${NOFORMAT}"
 
