@@ -1,1 +1,1 @@
-# shell
+# Setup scripts

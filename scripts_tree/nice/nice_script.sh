@@ -44,7 +44,7 @@ parse_params() {
 setup_colors
 parse_params "$@"
 
-PROGRAMS="bat btop meld textmaker ncdu"
+PROGRAMS="bat btop powertop meld textmaker ncdu"
 PKG=$1
 HOME_USER=$2
 
