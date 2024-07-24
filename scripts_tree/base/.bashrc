@@ -102,6 +102,8 @@ alias ports='lsof -i -P -n | grep LISTEN | grep -v grep'
 alias t="tree --du -h -L"
 alias k="kubectl"
 alias open="xdg-open"
+alias fzf="fzf --preview 'bat --color=always {}'"
+alias iv='vi $(fzf)' 
 
 # git branch
 git_branch() {
