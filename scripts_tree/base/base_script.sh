@@ -44,7 +44,7 @@ parse_params() {
 setup_colors
 parse_params "$@"
 
-PROGRAMS="git tree curl wget nmap openssh-server sysstat fzf"
+PROGRAMS="git tree curl wget nmap openssh-server sysstat fzf xev"
 PKG=$1
 HOME_USER=$2
 

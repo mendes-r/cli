@@ -104,6 +104,7 @@ alias k="kubectl"
 alias open="xdg-open"
 alias fzf="fzf --preview 'bat --color=always {}'"
 alias iv='vi $(fzf)' 
+alias showkeys="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 
 # git branch
 git_branch() {
