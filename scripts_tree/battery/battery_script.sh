@@ -44,7 +44,7 @@ parse_params() {
 setup_colors
 parse_params "$@"
 
-PROGRAMS="bat btop meld textmaker ncdu"
+PROGRAMS="powertop"
 PKG=$1
 HOME_USER=$2
 
@@ -55,4 +55,9 @@ for program in $PROGRAMS; do
   $PKG install $program -y
   msg "${GREEN}$program installed.${NOFORMAT}"
 done
+
+msg "Calibrating powertop..."
+powertop --calibrate
+msg "Start auto-tune for powertop..."
+powertop --auto-tune
 
